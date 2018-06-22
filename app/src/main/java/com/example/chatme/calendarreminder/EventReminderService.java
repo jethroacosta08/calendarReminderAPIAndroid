@@ -23,7 +23,7 @@ public class EventReminderService {
     public void addReminderInCalendar(EventReminder evRem) {
         Calendar cal = Calendar.getInstance();
         Uri EVENTS_URI = Uri.parse(getCalendarUriBase(true) + "events");
-        TimeZone timeZone = TimeZone.getDefault();
+        TimeZone timeZone = TimeZone.getTimeZone("UTC +8");
 
         /** Inserting an event in calendar. */
         ContentValues values = new ContentValues();
@@ -39,7 +39,7 @@ public class EventReminderService {
         values.put(CalendarContract.Events.DTEND, dateEnd);
 
         values.put(CalendarContract.Events.EVENT_TIMEZONE, timeZone.getID());
-        values.put(CalendarContract.Events.HAS_ALARM, 1);
+        values.put(CalendarContract.Events.HAS_ALARM, evRem.getHasAlarm());
         Uri event = this.cr.insert(EVENTS_URI, values);
 
         // Display event id.

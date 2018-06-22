@@ -49,15 +49,17 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
                     DateFormat timeFormatter = new SimpleDateFormat("HH:mm");
+                    timeFormatter.setTimeZone(TimeZone.getTimeZone("UTC +8"));
 
                     // Build Event Reminder
                     EventReminder myRem = new EventReminder();
-                    myRem.setTitle("Nico's Reminder");
+                    myRem.setTitle("Another Reminder");
                     myRem.setDescription("hahahaha");
-                    myRem.setDateStart(dateFormatter.parse("2018-06-25"));
+                    myRem.setDateStart(dateFormatter.parse("2018-06-26"));
                     myRem.setTimeStart(timeFormatter.parse("12:00"));
-                    myRem.setDateEnd(dateFormatter.parse("2018-06-29"));
-                    myRem.setTimeEnd(timeFormatter.parse("12:00"));
+                    myRem.setDateEnd(dateFormatter.parse("2018-06-26"));
+                    myRem.setTimeEnd(timeFormatter.parse("15:00"));
+                    myRem.setHasAlarm(true);
 
                     // Event Reminder Service
                     EventReminderService myRemService = new EventReminderService(getContentResolver(),getApplicationContext());
